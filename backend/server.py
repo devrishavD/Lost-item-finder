@@ -1,12 +1,14 @@
 from flask import Flask
 from flask_cors import CORS
 from routes.gemini_routes import gemini_bp
+from routes.describe_routes import describe_bp
 
 app = Flask(__name__)
 CORS(app)
 
-# register blueprint (routes)
+# Register blueprints
 app.register_blueprint(gemini_bp)
+app.register_blueprint(describe_bp)
 
 @app.route("/")
 def home():

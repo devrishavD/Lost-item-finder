@@ -24,20 +24,26 @@ const Identify = () => {
     { name: "Watch", icon: <Watch size={28} /> },
   ];
 
+  const handleNext = () => {
+    if (selectedItem) {
+      navigate("/describe", { state: { itemType: selectedItem } });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
-      {/* Richer Gradient Background */}
+      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#04090e] via-[#112d2d] to-[#04090e]" />
 
-      {/* Sticky Header */}
+      {/* Header */}
       <div className="relative z-20">
         <Header currentStep={1} />
       </div>
 
-      {/* Soft gradient overlay for header blending */}
+      {/* Soft overlay */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0D1117] via-[#111827]/80 to-transparent z-10" />
 
-      {/* Main content */}
+      {/* Main */}
       <main className="relative z-10 flex flex-col items-center justify-center flex-grow px-4 py-8">
         <div className="bg-[#161B22]/70 backdrop-blur-md rounded-3xl p-8 sm:p-10 w-full max-w-4xl shadow-2xl border border-gray-700">
           <h2 className="text-3xl md:text-4xl font-semibold text-center mb-3 text-white">
@@ -47,7 +53,7 @@ const Identify = () => {
             Tell us what you've lost — we'll help you get it back.
           </p>
 
-          {/* Grid of items */}
+          {/* Item grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-8 sm:mb-10">
             {items.map((item) => (
               <button
@@ -60,7 +66,9 @@ const Identify = () => {
                 }`}
               >
                 <div className="mb-3 text-[#00BFA6]">{item.icon}</div>
-                <span className="text-sm font-medium text-white">{item.name}</span>
+                <span className="text-sm font-medium text-white">
+                  {item.name}
+                </span>
               </button>
             ))}
           </div>
@@ -68,7 +76,9 @@ const Identify = () => {
           {/* Upload section */}
           <div className="border-2 border-dashed border-gray-700 rounded-2xl p-8 sm:p-10 text-center mb-8 sm:mb-10 hover:border-[#00BFA6]/50 transition duration-300 cursor-pointer">
             <Upload className="mx-auto text-[#00BFA6] mb-4" size={32} />
-            <p className="font-medium text-white mb-1">Or upload an image of your item</p>
+            <p className="font-medium text-white mb-1">
+              Or upload an image of your item
+            </p>
             <p className="text-sm text-gray-400">
               Drag & drop or click to browse • JPG, PNG, WEBP (max 5 MB)
             </p>
@@ -76,8 +86,13 @@ const Identify = () => {
 
           {/* Next button */}
           <button
-            className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#07c965] to-[#05b198] text-black font-semibold hover:from-[#00FFD1] hover:to-[#00BFA6] transition duration-300"
-            onClick={() => navigate("/describe")}
+            onClick={handleNext}
+            disabled={!selectedItem}
+            className={`w-full py-4 rounded-2xl font-semibold transition duration-300 ${
+              selectedItem
+                ? "bg-gradient-to-r from-[#07c965] to-[#05b198] text-black hover:from-[#00FFD1] hover:to-[#00BFA6]"
+                : "bg-gray-600 text-gray-300 cursor-not-allowed"
+            }`}
           >
             Next →
           </button>
