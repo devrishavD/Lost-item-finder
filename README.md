@@ -45,8 +45,6 @@ cd Lost-item-finder
 
 ### 2️⃣ Create a Virtual Environment (Recommended)
 
-#### ✅ Windows
-
 ```bash
 python -m venv venv
 venv\Scripts\activate
@@ -57,10 +55,8 @@ venv\Scripts\activate
 ### 3️⃣ Install Required Dependencies
 
 ```bash
-pip install flask
+pip install -r requirements.txt
 ```
-
-> If additional libraries are used later, add them to `requirements.txt`.
 
 ---
 
@@ -78,8 +74,8 @@ http://127.0.0.1:5000/
 
 ---
 
-## 👩‍💻 Author
+👩‍💻 Authors
 
-**Rishav Dam**
-**Ritosri Saha**
----
+Ritosri Saha 
+
+Rishav Dam 
